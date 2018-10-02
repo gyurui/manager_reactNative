@@ -1,20 +1,26 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, {Component} from 'react';
-import { Text, View} from 'react-native';
+import {  View} from 'react-native';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import { LoginForm } from './components/LoginForm'
+import ReduxThunk from 'redux-thunk'
+import { createStore, applyMiddleware } from 'redux'
+
+import  LoginForm  from './components/LoginForm'
 import reducers from './reducers'; 
 import firebase from 'firebase'
 
+import  { composeWithDevTools  } from 'remote-redux-devtools';
+
+const middleware = [
+  ReduxThunk,
+];
+
+const store = createStore(reducers, composeWithDevTools(
+  applyMiddleware(...middleware),
+  // other store enhancers if any
+));
+
 export default class App extends Component {
+
   componentWillMount() {
     const config = {
       apiKey: "AIzaSyBoq9NrqOTzQIuyn8wahv5QIy1pMRObku0",
@@ -30,10 +36,12 @@ export default class App extends Component {
 
   render() {
     return (
-      <Provider store={createStore(reducers)} >
+      <Provider store={store} >
+      <View>
         <LoginForm></LoginForm>
+      </View>
       </Provider>
-    );
+      );
   }
 }
 
