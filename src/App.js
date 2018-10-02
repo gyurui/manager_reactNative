@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
-import {  View} from 'react-native';
+import {  View } from 'react-native';
 import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux'
+import {Header} from './components/common'
 
 import  LoginForm  from './components/LoginForm'
 import reducers from './reducers'; 
 import firebase from 'firebase'
 
-import  { composeWithDevTools  } from 'remote-redux-devtools';
+import  { composeWithDevTools } from 'remote-redux-devtools';
 
 const middleware = [
   ReduxThunk,
@@ -38,6 +39,7 @@ export default class App extends Component {
     return (
       <Provider store={store} >
       <View>
+        <Header headerText="Manager"></Header>
         <LoginForm></LoginForm>
       </View>
       </Provider>
