@@ -3,13 +3,13 @@ import {  View } from 'react-native';
 import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux'
-import {Header} from './components/common'
 
-import  LoginForm  from './components/LoginForm'
 import reducers from './reducers'; 
 import firebase from 'firebase'
 
-import  { composeWithDevTools } from 'remote-redux-devtools';
+import  { composeWithDevTools  } from 'remote-redux-devtools';
+import LoginForm from './components/LoginForm';
+import Router  from './Router';
 
 const middleware = [
   ReduxThunk,
@@ -38,9 +38,8 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store} >
-      <View>
-        <Header headerText="Manager"></Header>
-        <LoginForm></LoginForm>
+      <View style={{flex: 1}}>
+        <Router></Router> 
       </View>
       </Provider>
       );

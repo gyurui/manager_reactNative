@@ -3,7 +3,8 @@ import { View } from 'react-native';
 
 const CardSection = (props) => {
   return (
-    <View style={styles.containerStyle}>
+    //ez az array felulfogja irni a default stylet juhuu
+    <View style={[styles.containerStyle, props.style]}>
       {props.children}
     </View>
   );
