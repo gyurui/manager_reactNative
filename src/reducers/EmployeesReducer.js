@@ -1,5 +1,5 @@
 import {
-    EMPLOYEES_FETCH_SUCCESS
+    EMPLOYEES_FETCH_SUCCESS, EMPLOYEE_SAVE_SUcCESS
   } from '../actions/types';
   
   const INITIAL_STATE = {};
@@ -7,7 +7,6 @@ import {
   export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
       case EMPLOYEES_FETCH_SUCCESS:
-        console.log(action)
         return action.payload;
       default:
         return state;

@@ -1,54 +1,28 @@
 import React,{Component} from 'react'
 import { connect } from 'react-redux'
 import {View, Text, Picker} from 'react-native'
-import { employeeUpdate, employeeCreate } from '../actions'
+import { employeeUpdate, employeeCreate, employeeClear } from '../actions'
 
 import { Card, CardSection, Button, Input } from './common';
+import EmployeeForm from './EmployeeForm';
 
 class EmployeeCreate extends Component {
-    onButtonPress() {
+    componentWillMount() {
+        this.props.employeeClear()
+    }
+
+    onButtonPress = () => {
          const {name, phone, shift} = this.props
 
          this.props.employeeCreate({name, phone, shift: shift || 'Monday'})
     }
 
     render() {
-        console.log(this.props.employee)
-
         return (
             <Card>
-                <CardSection>
-                    <Input label='Name'
-                    placeHolder='Jane'
-                    value = {this.props.name}
-                    onChangeText= {value => this.props.employeeUpdate({ prop: 'name', value })}
-                     >
-                    </Input>
-                </CardSection>
-                <CardSection>
-                <Input label='Phone'
-                    placeHolder='555-555-555'
-                    value={this.props.phone}
-                    onChangeText= {text => this.props.employeeUpdate({ prop: 'phone', value: text})} 
-                     >
-                    </Input>
-                </CardSection>
-                <CardSection style={{ flexDirection: 'column' }}>
-                    <Text style={styles.pickerTextStyle}>Shift</Text>
-                <Picker
-                    selectedValue={this.props.shift}
-                    onValueChange={day => this.props.employeeUpdate({ prop: 'shift', value: day})}>
-                    <Picker.Item label="Monday" value="Monday" />
-                    <Picker.Item label="Thuesday" value="Thuesday" />
-                    <Picker.Item label="Wednesday" value="Wednesday" />
-                    <Picker.Item label="Thursday" value="Thursday" />
-                    <Picker.Item label="Friday" value="Friday" />
-                    <Picker.Item label="Saturday" value="Saturday" />
-                    <Picker.Item label="Sunday" value="Sunday" />
-                </Picker>
-                </CardSection>
+                <EmployeeForm></EmployeeForm>
                 <CardSection> 
-                    <Button onPress={this.onButtonPress.bind(this)}>
+                    <Button onPress={this.onButtonPress}>
                         Create
                     </Button>
                 </CardSection>
@@ -71,7 +45,7 @@ const mapStateToProps = (state) => {
   };
   
 export default connect(mapStateToProps, {
-    employeeUpdate, employeeCreate
+    employeeUpdate, employeeCreate, employeeClear
   })(EmployeeCreate);
   
 
