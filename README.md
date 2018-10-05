@@ -8,3 +8,7 @@ npm install --save redux-thunk
 npm install --save react-native-router-flux
 npm install --save loadsh
 npm install react-native-communications
+//install reactnative elements
+npm i react-native-elements --save
+npm i --save react-native-vector-icons
+react-native link react-native-vector-icons
