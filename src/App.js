@@ -88,6 +88,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store} >
+
       <View >
         <Header headerText="Swipe"></Header>
         <Deck 
